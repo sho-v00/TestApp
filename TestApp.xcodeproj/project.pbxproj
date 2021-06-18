@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AD9A4A0AD3DE549C8AFA2C4A /* Pods_TestAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC8C39E3EA03F5A69BE93FB /* Pods_TestAppTests.framework */; };
+		CAE4A3DE267CE6E700943B64 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE4A3DD267CE6E700943B64 /* MapViewController.swift */; };
+		CAE4A3E3267CE6FE00943B64 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAE4A3E2267CE6FE00943B64 /* Map.storyboard */; };
 		CAF24014267B8757008D6E27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF24013267B8757008D6E27 /* AppDelegate.swift */; };
 		CAF24016267B8757008D6E27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF24015267B8757008D6E27 /* SceneDelegate.swift */; };
 		CAF24018267B8757008D6E27 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF24017267B8757008D6E27 /* HomeViewController.swift */; };
@@ -50,6 +52,8 @@
 		6A1DA3C7BFC3F2847859DBA9 /* Pods-TestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.debug.xcconfig"; path = "Target Support Files/Pods-TestApp/Pods-TestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6AC8C39E3EA03F5A69BE93FB /* Pods_TestAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E97E5E03C2E9FA91EB5D90 /* Pods-TestApp-TestAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp-TestAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-TestApp-TestAppUITests/Pods-TestApp-TestAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CAE4A3DD267CE6E700943B64 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		CAE4A3E2267CE6FE00943B64 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		CAF24010267B8757008D6E27 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAF24013267B8757008D6E27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAF24015267B8757008D6E27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,15 @@
 				6AC8C39E3EA03F5A69BE93FB /* Pods_TestAppTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CAE4A3DC267CE6C900943B64 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				CAE4A3DD267CE6E700943B64 /* MapViewController.swift */,
+				CAE4A3E2267CE6FE00943B64 /* Map.storyboard */,
+			);
+			path = MapView;
 			sourceTree = "<group>";
 		};
 		CAF24007267B8757008D6E27 = {
@@ -180,6 +193,7 @@
 		CAF24108267BBBCE008D6E27 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				CAE4A3DC267CE6C900943B64 /* MapView */,
 				CAF2410C267BBC06008D6E27 /* LaunchScreen */,
 				CAF2410B267BBBF2008D6E27 /* Home */,
 			);
@@ -344,6 +358,7 @@
 			files = (
 				CAF24110267BBC2A008D6E27 /* NormalCell.xib in Resources */,
 				CAF24020267B8760008D6E27 /* LaunchScreen.storyboard in Resources */,
+				CAE4A3E3267CE6FE00943B64 /* Map.storyboard in Resources */,
 				CAF2401D267B8760008D6E27 /* Assets.xcassets in Resources */,
 				CAF2401B267B8757008D6E27 /* Home.storyboard in Resources */,
 			);
@@ -494,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAF24018267B8757008D6E27 /* HomeViewController.swift in Sources */,
+				CAE4A3DE267CE6E700943B64 /* MapViewController.swift in Sources */,
 				CAF24014267B8757008D6E27 /* AppDelegate.swift in Sources */,
 				CAF24016267B8757008D6E27 /* SceneDelegate.swift in Sources */,
 				CAF2410F267BBC2A008D6E27 /* NormalCell.swift in Sources */,
