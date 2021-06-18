@@ -6,26 +6,43 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 final class MapViewController: UIViewController {
 
+    // MARK: - UIs
     @IBOutlet weak var mapView: MKMapView!
+    
+    // MARK: - Properties
+    private let locationManager = CLLocationManager()
+    private let span = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        checkUserLocationAuthorization()
+        centerCurrentLocation()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupView() {
+        navigationItem.title = "Map"
     }
-    */
-
+    
+    // TODO: - Move Location Manager to UseCase or Feature layer
+    private func checkUserLocationAuthorization() {
+        let status = locationManager.authorizationStatus
+        if case .notDetermined = status {
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    private func centerCurrentLocation() {
+        locationManager.startUpdatingLocation()
+        mapView.userTrackingMode = .follow
+        let userLocation = CLLocationCoordinate2D(latitude: mapView.userLocation.coordinate.latitude,
+                                                  longitude: mapView.userLocation.coordinate.longitude)
+        let region = MKCoordinateRegion(center: userLocation, span: span)
+        mapView.setRegion(region, animated: true)
+    }
 }

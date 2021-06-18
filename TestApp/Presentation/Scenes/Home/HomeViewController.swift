@@ -32,7 +32,14 @@ final class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UITableViewDelegate {}
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch sections[indexPath.section] {
+        case .mapView:
+            navigationController?.pushViewController(R.storyboard.map().instantiateInitialViewController()!, animated: true)
+        }
+    }
+}
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
