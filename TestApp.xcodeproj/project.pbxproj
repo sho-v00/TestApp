@@ -12,6 +12,8 @@
 		CAE4A3E3267CE6FE00943B64 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAE4A3E2267CE6FE00943B64 /* Map.storyboard */; };
 		CAE4A3E9267F621000943B64 /* PlaceAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE4A3E8267F621000943B64 /* PlaceAnnotationView.swift */; };
 		CAE4A3F1267F623700943B64 /* PlaceAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE4A3F0267F623700943B64 /* PlaceAnnotationView.xib */; };
+		CAE4A3F9267F9B9A00943B64 /* PlaceCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE4A3F8267F9B9A00943B64 /* PlaceCalloutView.xib */; };
+		CAE4A3FE267F9BC300943B64 /* PlaceCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE4A3FD267F9BC300943B64 /* PlaceCalloutView.swift */; };
 		CAF24014267B8757008D6E27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF24013267B8757008D6E27 /* AppDelegate.swift */; };
 		CAF24016267B8757008D6E27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF24015267B8757008D6E27 /* SceneDelegate.swift */; };
 		CAF24018267B8757008D6E27 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF24017267B8757008D6E27 /* HomeViewController.swift */; };
@@ -58,6 +60,8 @@
 		CAE4A3E2267CE6FE00943B64 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		CAE4A3E8267F621000943B64 /* PlaceAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnnotationView.swift; sourceTree = "<group>"; };
 		CAE4A3F0267F623700943B64 /* PlaceAnnotationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceAnnotationView.xib; sourceTree = "<group>"; };
+		CAE4A3F8267F9B9A00943B64 /* PlaceCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceCalloutView.xib; sourceTree = "<group>"; };
+		CAE4A3FD267F9BC300943B64 /* PlaceCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCalloutView.swift; sourceTree = "<group>"; };
 		CAF24010267B8757008D6E27 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAF24013267B8757008D6E27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAF24015267B8757008D6E27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 			children = (
 				CAE4A3E8267F621000943B64 /* PlaceAnnotationView.swift */,
 				CAE4A3F0267F623700943B64 /* PlaceAnnotationView.xib */,
+				CAE4A3F8267F9B9A00943B64 /* PlaceCalloutView.xib */,
+				CAE4A3FD267F9BC300943B64 /* PlaceCalloutView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -376,6 +382,7 @@
 				CAF2401D267B8760008D6E27 /* Assets.xcassets in Resources */,
 				CAE4A3F1267F623700943B64 /* PlaceAnnotationView.xib in Resources */,
 				CAF2401B267B8757008D6E27 /* Home.storyboard in Resources */,
+				CAE4A3F9267F9B9A00943B64 /* PlaceCalloutView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +535,7 @@
 				CAE4A3E9267F621000943B64 /* PlaceAnnotationView.swift in Sources */,
 				CAF24014267B8757008D6E27 /* AppDelegate.swift in Sources */,
 				CAF24016267B8757008D6E27 /* SceneDelegate.swift in Sources */,
+				CAE4A3FE267F9BC300943B64 /* PlaceCalloutView.swift in Sources */,
 				CAF2410F267BBC2A008D6E27 /* NormalCell.swift in Sources */,
 				CAF24069267B92C4008D6E27 /* R.generated.swift in Sources */,
 			);

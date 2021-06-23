@@ -78,7 +78,11 @@ final class MapViewController: UIViewController {
         let tokyoDome = PlaceAnnotation(index: 2, name: "東京ドーム", image: R.image.im_sp()!,
                                         latitude: 35.70580548548312, longitude: 139.7517604413992)
         tokyoDome.coordinate = CLLocationCoordinate2DMake(tokyoDome.latitude, tokyoDome.longitude)
-        mapView.addAnnotations([tokyoDome])
+        let jinbochoSt = PlaceAnnotation(index: 3,
+                                         name: "神保町駅 ー 神保町は古本いっぱい楽しいうわーいうわーいうわーいうわーいうわーいうわーいうわーいうわーいうわーいうわーいうわーいうわーい",
+                                         image: R.image.im_sp()!, latitude: 35.69591725953706, longitude: 139.75773500398736)
+        jinbochoSt.coordinate = CLLocationCoordinate2DMake(jinbochoSt.latitude, jinbochoSt.longitude)
+        mapView.addAnnotations([tokyoDome, jinbochoSt])
     }
 }
 
@@ -107,6 +111,33 @@ extension MapViewController: MKMapViewDelegate {
             annotationView?.image = R.image.ic_annotation()
 
             return annotationView
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        // 自身の位置は無視
+        if view.annotation is MKUserLocation { return }
+        
+        let calloutView = R.nib.placeCalloutView.firstView(owner: nil)!
+        if let annotatioin = view.annotation as? PlaceAnnotation {
+            calloutView.label.text = annotatioin.name
+            calloutView.imageView.image = annotatioin.image
+        }
+        // ピンの中心にCalloutがフォーカスされるためInsetをかける
+        let inset = PlaceAnnotationView.height / 2
+        calloutView.center = CGPoint(x: view.bounds.size.width / 2,
+                                     y: (-calloutView.bounds.size.height / 2) - inset)
+        view.addSubview(calloutView)
+        mapView.setCenter((view.annotation?.coordinate)!, animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if view.isKind(of: MKAnnotationView.self) {
+            for subview in view.subviews {
+                if subview.isKind(of: PlaceCalloutView.self) {
+                    subview.removeFromSuperview()
+                }
+            }
         }
     }
 }

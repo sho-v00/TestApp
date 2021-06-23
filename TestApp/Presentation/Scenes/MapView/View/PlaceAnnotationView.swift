@@ -11,6 +11,8 @@ import MapKit
 final class PlaceAnnotationView: MKAnnotationView {
 
     @IBOutlet weak var label: UILabel!
+    
+    static let height: CGFloat = 53
 
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -30,5 +32,27 @@ final class PlaceAnnotationView: MKAnnotationView {
         guard let view = nib.instantiate(withOwner: self).first as? UIView else { return }
         view.frame = bounds
         addSubview(view)
+    }
+    
+    // Calloutのタップイベントを検知するための設定
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let hitView = super.hitTest(point, with: event)
+        if hitView == self {
+            return nil
+        }
+        return hitView
+    }
+
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        var isInside = self.bounds.contains(point)
+        if !isInside {
+            for view in self.subviews {
+                isInside = view.frame.contains(point)
+                if isInside {
+                    break
+                }
+            }
+        }
+        return isInside
     }
 }
