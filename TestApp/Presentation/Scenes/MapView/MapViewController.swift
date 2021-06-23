@@ -48,6 +48,8 @@ final class MapViewController: UIViewController {
     private func setupView() {
         navigationItem.title = "Map"
         mapView.delegate = self
+        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editDidTap))
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     // TODO: - Move Location Manager to UseCase or Feature layer
@@ -83,6 +85,14 @@ final class MapViewController: UIViewController {
                                          image: R.image.im_sp()!, latitude: 35.69591725953706, longitude: 139.75773500398736)
         jinbochoSt.coordinate = CLLocationCoordinate2DMake(jinbochoSt.latitude, jinbochoSt.longitude)
         mapView.addAnnotations([tokyoDome, jinbochoSt])
+    }
+    
+    @objc
+    private func editDidTap() {
+        let vc = R.storyboard.mapEdit().instantiateInitialViewController() as! MapEditViewController
+        vc.delegate = self
+        let nvc = UINavigationController(rootViewController: vc)
+        present(nvc, animated: true)
     }
 }
 
@@ -139,5 +149,11 @@ extension MapViewController: MKMapViewDelegate {
                 }
             }
         }
+    }
+}
+
+extension MapViewController: MapEditViewCotrollerDelegate {
+    func changeHeightDidTap() {
+        print("didTap")
     }
 }
