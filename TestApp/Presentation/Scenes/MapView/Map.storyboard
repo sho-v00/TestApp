@@ -31,6 +31,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="3Zl-8d-y3L" id="eCI-7P-4Hx"/>
+                        <outlet property="mapViewBottomConstraint" destination="3Qj-K5-a1S" id="qTq-9q-ZCQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JV7-pZ-p35" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

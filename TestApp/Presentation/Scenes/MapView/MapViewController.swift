@@ -32,8 +32,11 @@ final class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     // MARK: - Properties
+    @IBOutlet weak var mapViewBottomConstraint: NSLayoutConstraint!
     private let locationManager = CLLocationManager()
     private let span = MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3)
+    
+    private var isHalfHeight = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +94,7 @@ final class MapViewController: UIViewController {
     private func editDidTap() {
         let vc = R.storyboard.mapEdit().instantiateInitialViewController() as! MapEditViewController
         vc.delegate = self
+        vc.isHalfHeight = isHalfHeight
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
     }
@@ -153,7 +157,9 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 extension MapViewController: MapEditViewCotrollerDelegate {
-    func changeHeightDidTap() {
-        print("didTap")
+    func halfHeightDidChange(isOn: Bool) {
+        isHalfHeight = isOn
+        let inset = isOn ? UIScreen.main.bounds.height / 2 + 100 : .zero
+        mapViewBottomConstraint.constant = inset
     }
 }
