@@ -17,7 +17,6 @@ final class PlaceAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
-        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
         loadFromNib()
     }
 
@@ -30,7 +29,9 @@ final class PlaceAnnotationView: MKAnnotationView {
     private func loadFromNib() {
         let nib = R.nib.placeAnnotationView
         guard let view = nib.instantiate(withOwner: self).first as? UIView else { return }
-        view.frame = bounds
+        bounds = view.bounds
+        // make inset cuz the pin's centre is focused
+        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
         addSubview(view)
     }
     

@@ -34,7 +34,7 @@ final class MapViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var mapViewBottomConstraint: NSLayoutConstraint!
     private let locationManager = CLLocationManager()
-    private let span = MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3)
+    private let span = MKCoordinateSpan(latitudeDelta: 0.7, longitudeDelta: 0.7)
     
     private var isHalfHeight = false
     
@@ -68,8 +68,8 @@ final class MapViewController: UIViewController {
         mapView.userTrackingMode = .follow
         let userLocation = CLLocationCoordinate2D(latitude: mapView.userLocation.coordinate.latitude,
                                                   longitude: mapView.userLocation.coordinate.longitude)
-        let region = MKCoordinateRegion(center: userLocation, span: span)
-        mapView.setRegion(region, animated: true)
+        mapView.setCenter(userLocation, animated: true)
+        mapView.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 1, maxCenterCoordinateDistance: 20000), animated: true)
     }
     
     private func setAnnotations() {
@@ -129,20 +129,39 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        // 自身の位置は無視
+        // ignore UserLocation
         if view.annotation is MKUserLocation { return }
         
+        // MARK: - setting CustomView to Annotation
         let calloutView = R.nib.placeCalloutView.firstView(owner: nil)!
         if let annotatioin = view.annotation as? PlaceAnnotation {
             calloutView.label.text = annotatioin.name
             calloutView.imageView.image = annotatioin.image
         }
-        // ピンの中心にCalloutがフォーカスされるためInsetをかける
-        let inset = PlaceAnnotationView.height / 2
         calloutView.center = CGPoint(x: view.bounds.size.width / 2,
-                                     y: (-calloutView.bounds.size.height / 2) - inset)
+                                     y: -calloutView.bounds.size.height / 2)
         view.addSubview(calloutView)
-        mapView.setCenter((view.annotation?.coordinate)!, animated: true)
+        
+        guard isHalfHeight else {
+            mapView.setCenter((view.annotation?.coordinate)!, animated: true)
+            return
+        }
+        
+        // MARK: - animation and inset make a pin to the center
+        guard let annotation = view.annotation else { return }
+        // cache the value to use as the start position for animation
+        let currentCoordinates = mapView.centerCoordinate
+        // set an annotation to the center
+        mapView.centerCoordinate = annotation.coordinate
+        // convert a position adjusted by inset/offset you want to move to coordinates on MapView
+        let centerInset: CGFloat = 30
+        let insetCenter = CGPoint(x: mapView.frame.width / 2,
+                                 y: mapView.frame.height / 2 - centerInset)
+        let coordinate = mapView.convert(insetCenter, toCoordinateFrom: mapView)
+        // reset initial coordinates as the animation start position
+        mapView.centerCoordinate = currentCoordinates
+        // set the calculated coordinate
+        self.mapView.setCenter(coordinate, animated: true)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
